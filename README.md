@@ -40,8 +40,17 @@ npm start
 
 ## 配置
 
-复制 `.env.example` 为 `.env.local`。当前首页只使用本地 Demo 数据；
-`src/integrations/zhihu/client.ts` 预留了官方搜索接口的服务端适配。
+复制 `.env.example` 为 `.env.local`。设置 `DEMO_MODE=true` 时，`searchZhihu` 从
+`src/demo-data/zhihu-search.json` 返回经过 normalize 的确定性数据。Live Mode
+默认调用项目级官方 Skill 的 `scripts/run.sh search zhihu`；如 Skill runner
+不在默认位置，可通过 `ZHIHU_SKILL_RUNNER` 指定绝对路径。Live Mode 调用失败
+会记录可读错误并返回空数组，不会让 Demo 崩溃。
+
+```ts
+import { searchZhihu } from "@/integrations/zhihu/client";
+
+const evidence = await searchZhihu("如何系统学习 AI Agent 开发？");
+```
 
 ## 项目结构
 

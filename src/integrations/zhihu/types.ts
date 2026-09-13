@@ -1,21 +1,13 @@
-export interface ZhihuSearchItem {
+export interface ZhihuEvidence {
+  contentId: string;
   title: string;
-  contentText?: string;
+  excerpt: string;
+  authorId: string;
+  authorName: string;
   url?: string;
-  contentType?: string;
-  authorName?: string;
-  authorAvatar?: string;
-  rankingScore?: number;
-}
-
-export interface ZhihuSearchResponse {
-  hasMore: boolean;
-  searchHashId: string;
-  items: ZhihuSearchItem[];
-  emptyReason?: string;
-}
-
-export interface ZhihuSearchQuery {
-  query: string;
-  limit?: number;
+  contentType?: "answer" | "article" | "other";
+  metrics?: {
+    votes?: number;
+    comments?: number;
+  };
 }

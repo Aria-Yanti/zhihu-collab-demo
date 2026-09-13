@@ -1,0 +1,35 @@
+[
+  {
+    "ContentID": "demo-answer-ai-agent",
+    "Title": "如何系统学习 AI Agent 开发？",
+    "ContentText": "可以从模型调用、工具编排、状态管理和评估四个层次逐步练习，并用小项目验证每一步。",
+    "AuthorID": "demo-author-zhang",
+    "AuthorName": "知乎用户张三",
+    "Url": "https://www.zhihu.com/question/123456789/answer/987654321",
+    "ContentType": "answer",
+    "VoteUpCount": 128,
+    "CommentCount": 16
+  },
+  {
+    "ContentID": "demo-article-frontend",
+    "Title": "个人开发者如何选择合适的前端技术栈？",
+    "ContentText": "选择技术栈时应综合考虑产品目标、团队熟悉度、生态成熟度和长期维护成本。",
+    "AuthorID": "demo-author-li",
+    "AuthorName": "知乎用户李四",
+    "Url": "https://zhuanlan.zhihu.com/p/123456789",
+    "ContentType": "article",
+    "VoteUpCount": 96,
+    "CommentCount": 8
+  },
+  {
+    "ContentID": "demo-answer-maintenance",
+    "Title": "怎样判断一个技术方案是否值得长期维护？",
+    "ContentText": "可以从需求稳定性、替换成本、可观测性、文档质量和社区活跃度评估方案的维护价值。",
+    "AuthorID": "demo-author-wang",
+    "AuthorName": "知乎用户王五",
+    "Url": "https://www.zhihu.com/question/246813579/answer/135792468",
+    "ContentType": "answer",
+    "VoteUpCount": 77,
+    "CommentCount": 11
+  }
+]

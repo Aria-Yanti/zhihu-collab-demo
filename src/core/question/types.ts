@@ -3,6 +3,18 @@ export interface QuestionInput {
   mode: "demo" | "official";
 }
 
+export interface QuestionAnalysis {
+  originalQuestion: string;
+  problem: string;
+  goal: string;
+  userBackground?: string;
+  needs: string[];
+  idealExpertTraits: string[];
+  searchQueries: string[];
+  requiresHumanExperience: boolean;
+  confidence: number;
+}
+
 export interface QuestionTask {
   id: string;
   title: string;
