@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Zhihu Collab Demo",
-  description: "知乎黑客松协作式问题探索 Demo"
+  title: "知乎经验网络",
+  description: "让还没有被写出来的经验，也能成为知乎的答案。"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
