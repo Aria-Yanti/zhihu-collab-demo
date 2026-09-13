@@ -1,6 +1,6 @@
  "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { createDemoPlan } from "@/core/question/createDemoPlan";
 import { demoQuestions } from "@/demo-data/questions";
 import type { QuestionPlan } from "@/core/question/types";
@@ -14,6 +14,22 @@ const plannedModules = [
 export default function HomePage() {
   const [question, setQuestion] = useState("");
   const [plan, setPlan] = useState<QuestionPlan | null>(null);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [oauthMessage, setOauthMessage] = useState("");
+
+  useEffect(() => {
+    void fetch("/api/oauth/status")
+      .then((response) => response.json())
+      .then((data: { authenticated?: boolean }) => setAuthenticated(data.authenticated === true))
+      .catch(() => setOauthMessage("无法读取当前授权状态。"));
+    const status = new URLSearchParams(window.location.search).get("oauth");
+    if (status === "error") setOauthMessage(new URLSearchParams(window.location.search).get("message") || "授权失败。");
+  }, []);
+
+  async function logout() {
+    await fetch("/api/oauth/logout", { method: "POST" });
+    setAuthenticated(false);
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -33,8 +49,23 @@ export default function HomePage() {
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
             输入一个问题，先用本地 Demo 数据生成可解释的协作任务计划。
-            知乎能力层将在后续按官方 Skill 契约接入。
+            你也可以先授权知乎账号，为后续个性化协作能力做好准备。
           </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {authenticated ? (
+              <>
+                <span className="rounded-full bg-green-50 px-4 py-2 text-sm font-medium text-green-700">知乎账号已授权</span>
+                <button type="button" onClick={logout} className="text-sm text-slate-500 underline hover:text-slate-800">
+                  退出授权
+                </button>
+              </>
+            ) : (
+              <a href="/api/oauth/start" className="rounded-full bg-zhihu-blue px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
+                授权知乎账号
+              </a>
+            )}
+          </div>
+          {oauthMessage && <p className="mt-3 text-sm text-red-600">{oauthMessage}</p>}
         </header>
 
         <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
